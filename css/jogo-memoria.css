@@ -1,0 +1,37 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8f0;
+    display: flex; /* é uma forma de organizar os itens tela*/
+    flex-direction: column; /* alinhar em colunas*/
+    align-items: center; /*alinhar a coluna no centro*/
+}
+
+h1{
+    color: #4682b4; /*mudar a cor da fonte*/
+    font-size: 3.5em ; /*muda o tamanho da fonte*/
+    margin-bottom: 0.2em;
+
+}
+
+.info-jogo{
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+
+}
+
+button{
+    background-color: #4682b4;
+    padding: 10px 20px;
+    margin-top: 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #36648b;
+}
