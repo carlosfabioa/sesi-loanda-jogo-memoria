@@ -21,6 +21,25 @@ h1{
 
 }
 
+.tabuleiro{
+    display: grid;
+    grid-template-columns: repeat(4, 120px);
+}
+
+.cartas{
+    width: 120px;
+    height: 120px;
+    background-color: #36648b; 
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+
 button{
     background-color: #4682b4;
     padding: 10px 20px;
