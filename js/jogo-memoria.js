@@ -13,6 +13,8 @@ let temporizador = null;
 let jogoIniciado = false;
 
 function iniciarJogo(){
+    cartas = []; 
+
     tempo = 0;
     elementoTempo.textContent = tempo;
 
@@ -20,6 +22,27 @@ function iniciarJogo(){
         clearInterval(temporizador);
         temporizador = null;
     }
+
+    const paresCartas = [...configCartas, ...configCartas];
+
+    paresCartas.array.forEach((cartaconfig, indice) => {
+        const  elementoCarta = document.createElement('div');
+        elementoCarta.className = 'carta';
+        elementoCarta.dataset.indice = indice;
+
+        //adicionar a carta ao tabuleiro
+        tabuleiro.appendChild(elementoCarta);
+
+        //Armazenar a carta no array
+        cartas.push({
+            elemento: elementoCarta,
+            imagem: cartaconfig.imagem,
+            nome: cartaconfig.nome,
+            virada: false,
+            combinada: false
+        });
+    });
+
 
     iniciarTemporizador();
 }
