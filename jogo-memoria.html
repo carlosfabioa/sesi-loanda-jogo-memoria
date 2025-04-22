@@ -1,27 +1,35 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo da memória</title>
-    <link rel="stylesheet" href="css/jogo-memoria.css">
+    <!-- Configuração básica do documento -->
+    <meta charset="UTF-8"> <!-- Define a codificação de caracteres -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsividade -->
+    <title>Jogo da Memória</title> <!-- Título da página -->
+    <link rel="stylesheet" href="css/jogo-memoria.css"> <!-- Vincula o arquivo CSS -->
 </head>
 <body>
+        <!-- Cabeçalho do jogo -->   
+    <h1>Jogo da Memória</h1>   
 
-    <h1>Jogo de memória</h1>
-
+    
+    <!-- Área de informações do jogo -->
     <div class="info-jogo">
+        <!-- Mostra quantos pares foram encontrados -->
         <div>Pares: <span id="pares">0</span>/8</div>
+        <!-- Mostra o tempo decorrido -->
         <div>Tempo: <span id="tempo">0</span>s</div>
-       <div>Jogadas: <span id="jogadas">0</span></div>
+        <!-- Mostra quantas jogadas foram feitas -->
+        <div>Jogadas: <span id="jogadas">0</span></div>
     </div>
-
-    <!--tabuleiro onde as cartas serão exibidas-->
+    
+    <!-- Tabuleiro onde as cartas serão exibidas -->
     <div class="tabuleiro" id="tabuleiro"></div>
     
-    <button id="reiniciar">Reiniciar </button>
-    
+    <!-- Botão para reiniciar o jogo -->
+    <button id="reiniciar">Reiniciar Jogo</button>
 
+
+    <!-- Vincula o arquivo JavaScript -->
     <script src="js/jogo-memoria.js"></script>
 </body>
 </html>

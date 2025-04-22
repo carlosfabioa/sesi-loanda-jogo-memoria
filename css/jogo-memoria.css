@@ -1,56 +1,127 @@
-body{
-    margin: 0;
-    padding: 0;
-    background-color: #f0f8f0;
-    display: flex; /* é uma forma de organizar os itens tela*/
-    flex-direction: column; /* alinhar em colunas*/
-    align-items: center; /*alinhar a coluna no centro*/
+/* ========== ESTILOS GERAIS DA PÁGINA ========== */
+
+/* Define o estilo do corpo (body) da página */
+body {
+    margin:0;
+    padding:0;
+    font-family: Arial, sans-serif; /* Define a fonte padrão como Arial */
+    display: flex; /* Ativa o layout Flexbox */
+    flex-direction: column; /* Organiza os elementos em coluna */
+    align-items: center; /* Centraliza os elementos horizontalmente */
+    background-color: #f0f8ff; /* Cor de fundo azul claro */
+    padding: 5px; /* Adiciona um espaçamento interno de 20px */
+    background-image: url("imagens/sesi.png");
+    background-blend-mode: lighten;
+    background-size: 10%;
+
+   
+   
 }
 
-h1{
-    color: #4682b4; /*mudar a cor da fonte*/
-    font-size: 3.5em ; /*muda o tamanho da fonte*/
-    margin-bottom: 0.2em;
-
+/* Estiliza o título principal (h1) */
+h1 {
+    color: #4682b4; /* Cor do texto (azul médio) */
+    margin-bottom: 10px; /* Espaçamento inferior de 10px */
 }
 
-.info-jogo{
-    display: flex;
-    justify-content: space-between;
-    width: 500px;
+/* ========== ÁREA DE INFORMAÇÕES DO JOGO ========== */
 
+/* Container que mostra pares, tempo e jogadas */
+.info-jogo {
+    display: flex; /* Layout Flexbox */
+    justify-content: space-between; /* Espaço igual entre os elementos */
+    width: 500px; /* Largura fixa de 500px */
+    margin-bottom: 20px; /* Espaçamento inferior de 20px */
+    font-size: 18px; /* Tamanho da fonte */
+    color: #2e8b57; /* Cor do texto (verde) */
+    
 }
 
-.tabuleiro{
-    display: grid;
-    grid-template-columns: repeat(4, 120px);
+/* ========== TABULEIRO DO JOGO ========== */
+
+/* Grid onde as cartas serão posicionadas */
+.tabuleiro {
+    display: grid; /* Ativa o layout Grid */
+    grid-template-columns: repeat(4, 120px); /* 4 colunas de 120px cada */
+    grid-gap: 15px; /* Espaço entre as cartas */
+    margin-bottom: 20px; /* Espaçamento inferior de 20px */
+    
 }
 
-.cartas{
-    width: 120px;
-    height: 120px;
-    background-color: #36648b; 
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+/* ========== ESTILO DAS CARTAS ========== */
+
+/* Estilo base da carta (fundo azul quando fechada) */
+.carta {
+    width: 120px; /* Largura fixa */
+    height: 120px; /* Altura fixa */
+    background-color: #4682b4; /* Cor de fundo azul */
+    border-radius: 8px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor em forma de mão ao passar o mouse */
+    transition: all 0.3s ease; /* Animação suave em todas as propriedades */
+    position: relative; /* Permite posicionamento absoluto interno */
+    overflow: hidden; /* Esconde qualquer conteúdo que ultrapasse */
 }
 
-
-
-
-button{
-    background-color: #4682b4;
-    padding: 10px 20px;
-    margin-top: 20px;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
+/* Estilo do VERSO da carta (padrão azul) */
+.carta::before {
+    content: ''; /* Conteúdo vazio (pseudo-elemento) */
+    position: absolute; /* Posicionamento absoluto dentro da carta */
+    top: 0; /* Alinha no topo */
+    left: 0; /* Alinha à esquerda */
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    background-color: #4682b4; /* Cor de fundo azul */
+    background-image: url('padrao-verso.png'); /* Imagem de fundo (opcional) */
+    background-size: cover; /* Garante que a imagem cubra todo o espaço */
+    z-index: 2; /* Coloca acima da imagem (para efeito de virada) */
+    transition: opacity 0.3s; /* Animação suave de opacidade */
 }
 
-button:hover{
-    background-color: #36648b;
+/* Estilo da IMAGEM dentro da carta (inicialmente escondida) */
+.carta img {
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    object-fit: cover; /* Redimensiona a imagem para cobrir o espaço */
+    position: absolute; /* Posicionamento absoluto dentro da carta */
+    top: 0; /* Alinha no topo */
+    left: 0; /* Alinha à esquerda */
+    opacity: 0; /* Inicialmente invisível */
+    transition: opacity 0.3s; /* Animação suave de opacidade */
+}
+
+/* ========== ESTADOS DA CARTA ========== */
+
+/* Quando a carta está VIRADA (mostra a imagem) */
+.carta.virada::before {
+    opacity: 0; /* Esconde o verso */
+}
+
+.carta.virada img {
+    opacity: 1; /* Mostra a imagem */
+}
+
+/* Quando a carta está COMBINADA (efeito de sucesso) */
+.carta.combinada {
+    transform: scale(0.95); /* Reduz levemente o tamanho */
+    box-shadow: 0 0 10px rgba(46, 139, 87, 0.8); /* Sombra verde */
+    cursor: default; /* Remove o cursor de clique */
+}
+
+/* ========== BOTÃO DE REINICIAR ========== */
+
+/* Estilo base do botão */
+button {
+    padding: 10px 20px; /* Espaçamento interno */
+    background-color: #4682b4; /* Cor de fundo azul */
+    color: white; /* Texto branco */
+    border: none; /* Remove borda padrão */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 16px; /* Tamanho da fonte */
+    cursor: pointer; /* Cursor em forma de mão */
+    transition: background-color 0.3s; /* Transição suave de cor */
+}
+
+/* Efeito hover (quando o mouse passa por cima) */
+button:hover {
+    background-color: #36648b; /* Cor de fundo mais escura */
 }
